@@ -38,7 +38,7 @@ namespace pullgursharp
                 display.HelpInfo();
             } else
             {
-                Console.WriteLine("Please specify a gallery to pull images from.");
+                Console.WriteLine("Please specify a gallery to pull images from or use --help for help.");
             }
         }
     }
