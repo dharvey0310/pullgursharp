@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RestSharp;
+﻿using RestSharp;
 
 namespace pullgursharp
 {
     class FetchImageURLs
     {
-        public Images FetchImages(string gallery)
+        public Images FetchImages(string gallery, string pageNumber)
         {
-            var client = new RestClient($"https://api.imgur.com/3/gallery/{gallery}");
-            var request = new RestRequest(Method.GET);
+            RestClient client = new RestClient($"https://api.imgur.com/3/gallery/{gallery}/{pageNumber}");
+            RestRequest request = new RestRequest(Method.GET);
             request.AddHeader("authorization", "Client-ID b68d6fbd258b5ac");
             request.AddHeader("content-type", "application/json");
-            var response = client.Execute<Images>(request);
+            IRestResponse<Images> response = client.Execute<Images>(request);
             return response.Data;
         }
     }
